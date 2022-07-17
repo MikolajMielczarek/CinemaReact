@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-
-
 export default function SecondStep(props) {
 
     const url = "#";
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [dateBirth, setDateBirth] = useState("");
+    const [allow, setAllow] = useState("");
     
     const resetForm = () => {
         setName("");
@@ -20,6 +19,19 @@ export default function SecondStep(props) {
         resetForm()
         props.show(name, lastName, dateBirth, false)
     }
+
+const overEighteen = dateOfBirth => {
+    const dayOfBirth = new Date(dateOfBirth);
+    const eighteenAgo = new Date();
+    eighteenAgo.setFullYear(eighteenAgo.getFullYear() - 18);
+    if (dayOfBirth <= eighteenAgo) {
+        setAllow("");
+    }else{
+        alert("You should be minimum 18 years old - because of that register button is disabled");
+    }
+}
+
+
 
   return (
     <div className='registration second-step'>
@@ -53,7 +65,9 @@ export default function SecondStep(props) {
                     <input className="input"
                     type="date"
                     onChange = {(e) => {
+                        setAllow(true)
                         setDateBirth(e.target.value)
+                        overEighteen(e.target.value)
                     }}
                     value={dateBirth}
                     required />
@@ -66,7 +80,7 @@ export default function SecondStep(props) {
                     </div>
                     <div className="container-btn">
                         <a href={url}>Log in instead</a>
-                        <button className="second-step-sub-btn" type="submit">Register</button>
+                        <button className="second-step-sub-btn" disabled={allow}>Register</button>
                     </div>
             </form>
         </div>

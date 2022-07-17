@@ -10,6 +10,7 @@ export default function FirstStep(props) {
     const [passIsGood1, setPassIsGood1] = useState(false);
     const [passIsGood2, setPassIsGood2] = useState(false);
     const [passIsGood3, setPassIsGood3] = useState(false);
+    const [allow, setAllow] = useState(false)
 
     const url = "#"
 
@@ -41,6 +42,14 @@ export default function FirstStep(props) {
             setPassIsGood3(true)
         } else {
             setPassIsGood3(false)
+        }
+
+        if ((password.length >= 8)
+            && reqLetter.test(password)
+            && reqDigit.test(password)) {
+                setAllow(false)
+        } else {
+            setAllow(true)
         }
     }
 
@@ -95,7 +104,7 @@ export default function FirstStep(props) {
                 <a href={url}>Log in instead</a>
                 <button 
                 className="first-step-sub-btn"
-                disabled={ !pass.includes(String) && !pass.includes(Number) && !(pass.length >= 8) }>Next step
+                disabled={allow}>Next step
             </button>
             </div>
         </form>

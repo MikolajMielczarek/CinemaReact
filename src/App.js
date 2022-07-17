@@ -17,6 +17,7 @@ function App() {
   const [lastName, setLastName] = useState('Swanson');
   const [dateBirth, setDateBirth] = useState('');
 
+  //for ex for future use...
   const user = {
     email,
     pass,
