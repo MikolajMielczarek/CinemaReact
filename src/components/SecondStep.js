@@ -8,19 +8,23 @@ export default function SecondStep(props) {
     const [dateBirth, setDateBirth] = useState("");
     const [allow, setAllow] = useState("");
     
+    //function for reset values of inputs
     const resetForm = () => {
         setName("");
         setLastName("");
         setDateBirth("");
     }
 
+    //reset inputs and hide second step/show succes
     const handleSubmit = (e) => {
         e.preventDefault()
         resetForm()
         props.show(name, lastName, dateBirth, false)
     }
 
-const overEighteen = dateOfBirth => {
+    //check if date in input date is over eighteen
+    //and set disable and alert
+    const overEighteen = dateOfBirth => {
     const dayOfBirth = new Date(dateOfBirth);
     const eighteenAgo = new Date();
     eighteenAgo.setFullYear(eighteenAgo.getFullYear() - 18);

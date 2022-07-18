@@ -8,7 +8,7 @@ import Succes from './components/Succes';
 
 
 function App() {
-
+  //display and display2 use for show or hide content
   const [display, setDisplay] = useState(true);
   const [display2, setDisplay2] = useState(true);
   const [email, setEmail] = useState('georgia.swanson@monterail.com');
@@ -26,12 +26,14 @@ function App() {
     dateBirth
   }
 
+  //function to show/hide first step
   const changeShow = (email, pass, change) => {
     setEmail(email);
     setPass(pass);
     setDisplay(change);
   }
 
+  //function to show/hide second step
   const changeShow2 = (name, lastName, dateBirth, change) => {
     setName(name);
     setLastName(lastName);
@@ -39,6 +41,7 @@ function App() {
     setDisplay2(change);
   }
 
+  //function to show/hide succes
   const changeShowSucces = (change) => {
     setDisplay(change)
     setDisplay2(change)

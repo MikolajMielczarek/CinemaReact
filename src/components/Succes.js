@@ -3,6 +3,7 @@
 
 export default function Succes(props) {
 
+    //to show first step and hide succes
     const handleClick = () => {
         props.show(true)
     }

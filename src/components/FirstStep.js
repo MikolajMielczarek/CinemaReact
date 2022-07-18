@@ -10,21 +10,26 @@ export default function FirstStep(props) {
     const [passIsGood1, setPassIsGood1] = useState(false);
     const [passIsGood2, setPassIsGood2] = useState(false);
     const [passIsGood3, setPassIsGood3] = useState(false);
-    const [allow, setAllow] = useState(false)
+    const [allow, setAllow] = useState(false);
 
-    const url = "#"
+    const url = "#";
 
+    //function to reset values of inputs
     const resetForm = () => {
         setEmail("");
         setPass("");
     }
 
+    //function for submit - reset inputs
+    //and hide first step/show second step
     const handleSubmit = (e) => {
         e.preventDefault()
         resetForm()
         props.show(email, pass, false)
     }
 
+    //function for check requriments for password
+    //and set disable in button 
     const validation = (password) => {
         const reqLetter = new RegExp('[a-zA-Z]');
         const reqDigit = new RegExp('[0-9]');
