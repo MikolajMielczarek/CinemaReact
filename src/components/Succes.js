@@ -3,29 +3,29 @@
 export default function Succes(props) {
 
     //to show first step and hide succes
-    const handleClick = () => {
-        props.show(true)
+    const finishRegistration = () => {
+        props.show(true);
     }
 
   return (
-    <div className="registration success-message">
-
-        <h1 className="h1-name h1-grey-1">
+    <section className="registration success-message">
+      <header className="registration__headings">
+        <h1 className="registration__headings__succes registration__headings__first">
           Good job {props.firstName}!
         </h1>
-    
-        <h3 className="h3-email">
-          We have sent you an email to <span>{props.email}</span>.<br />
-          Make sure to click the link from the message to activate your account.
-        </h3>
-
-        <div className="container-btn-2">
-            <button className="last-btn"
-              onClick={handleClick}>
-              Go to homepage
-            </button>
-        </div>
-
-    </div>
+      </header> 
+      <h3 className="registration--succesh3">
+        We have sent you an email to&nbsp; 
+        <span className="registration--succesh3--span">{props.email}</span>.<br />
+        Make sure to click the link from the message to activate your account.
+      </h3>
+      <div className="registration--succes-div-button">
+          <button
+            className="registration--succes-div-button--button"
+            onClick={finishRegistration}>
+            Go to homepage
+          </button>
+      </div>
+    </section>
   )
 }

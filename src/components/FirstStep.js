@@ -5,22 +5,26 @@ export default function FirstStep(props) {
     const blue = "#2F80ED";
     const red1 = "#EC1115";
     const gray1 = "#F7F7F7";
+    const greenRequirements = "green";
+    const redRequirements = "red";
+    const grayRequirements = "#343541";
     const url = "#";
 
     const [email, setEmail] = useState("");
+    const [inputEmailName, setInputEmailName] = useState("");
+    const [borderColorInputEmail, setBorderColorInputEmail] = useState("");
+
     const [pass, setPass] = useState("");
     const [inputPasswordName, setInputPasswordName] = useState("");
-    const [typeInput, setTypeInput] = useState("password");
-    const [passReguirementCharacters, setPassReguirementCharacters] = useState(false);
-    const [passReguirementLetter, setPassReguirementLetter] = useState(false);
-    const [passReguirementDigit, setPassReguirementDigit] = useState(false);
-    const [allow, setAllow] = useState(false);
-    
-   
-    const [borderColorInputEmail, setBorderColorInputEmail] = useState("");
-    const [inputEmailName, setInputEmailName] = useState("")
+    const [typePasswordInput, setTypePasswordInput] = useState("password");
+    const [passwordReguirementCharacters, setPasswordReguirementCharacters] = useState("");
+    const [passwordReguirementLetter, setPasswordReguirementLetter] = useState("");
+    const [passwordReguirementDigit, setPasswordReguirementDigit] = useState("");
     const [borderColorInputPassword, setBorderColorInputPassword] = useState("");
 
+    const [disableSubmitButton, setDisableSubmitButton] = useState(false);
+    
+    ////all for input email
 
     const onFocusEmailInput = () => {
         if(inputEmailName === "reqForInput" || inputEmailName === "noLengthForInput") {
@@ -31,36 +35,37 @@ export default function FirstStep(props) {
     const onBlurEmailInput = () => {
         if(inputEmailName === "reqForInput" || inputEmailName === "noLengthForInput") {
             setBorderColorInputEmail(gray1);
-        } else if(inputEmailName === "reqNoForInput") {
+        }else if(inputEmailName === "reqNoForInput") {
             /*alert('Email have to: 1) End with monterail.com 2) Contain @ 3) Have some value before @')*/
         }
     }
 
     //function to check email input
-    const checkingEmail = email => {
+    const checkEmailRequirements = email => {
         //at the end need to have "monterail.com" contain @ and sth before @ optional alert (finally not used)
         const reqMonte = new RegExp(/monterail.com$/gi);
         const reqAt = new RegExp(/[@]/g);
-        const reqStart = new RegExp(/.+@/g)
+        const reqBeforeAt = new RegExp(/.+@/g);
     
-        if(reqStart.test(email) && reqAt.test(email) && reqMonte.test(email)){
+        if(reqBeforeAt.test(email) && reqAt.test(email) && reqMonte.test(email)){
             setBorderColorInputEmail(blue);
             setInputEmailName("reqForInput");
             if(inputPasswordName === "reqForInput"){
-                setAllow(false)
+                setDisableSubmitButton(false);
             }
-        }else{
+        }else {
             setBorderColorInputEmail(red1);
             setInputEmailName("reqNoForInput");
-            setAllow(true);
+            setDisableSubmitButton(true);
         }
+
         if(email.length === 0){
             setBorderColorInputEmail(blue);
             setInputEmailName("noLengthForInput");
         }
     }
 
-    ////input password req
+    ////all for input password
 
     const onFocusPasswordInput = () => {
         if(inputPasswordName === "reqForInput" || inputPasswordName === "noLengthForInput") {
@@ -72,20 +77,7 @@ export default function FirstStep(props) {
         if(inputPasswordName === "reqForInput" || inputPasswordName === "noLengthForInput") {
             setBorderColorInputPassword(gray1);
         }
-    }
 
-    //function to reset values of inputs
-    const resetForm = () => {
-        setEmail("");
-        setPass("");
-    }
-
-    //function for submit - reset inputs
-    //and hide first step/show second step
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        resetForm()
-        props.show(email, pass, false)
     }
 
     //function for check requriments for password
@@ -93,66 +85,95 @@ export default function FirstStep(props) {
     const validation = (password) => {
         const reqLetter = new RegExp('[a-zA-Z]');
         const reqDigit = new RegExp('[0-9]');
+
         if(password.length >= 8) {
-            setPassReguirementCharacters(true);
-        } else {
-            setPassReguirementCharacters(false);
-            setInputPasswordName("reqNoForInput");
-            setBorderColorInputPassword(red1);
-        }
-        if(reqLetter.test(password)){
-            setPassReguirementLetter(true);
-            
-        } else {
-            setPassReguirementLetter(false);
-            setInputPasswordName("reqNoForInput");
-            setBorderColorInputPassword(red1);
-        }
-        if(reqDigit.test(password)){
-            setPassReguirementDigit(true);
-        } else {
-            setPassReguirementDigit(false);
+            setPasswordReguirementCharacters(greenRequirements);
+        }else {
+            setPasswordReguirementCharacters(redRequirements);
             setInputPasswordName("reqNoForInput");
             setBorderColorInputPassword(red1);
         }
 
-        if ((password.length >= 8)
+        if(reqLetter.test(password)){
+            setPasswordReguirementLetter(greenRequirements);
+            
+        }else {
+            setPasswordReguirementLetter(redRequirements);
+            setInputPasswordName("reqNoForInput");
+            setBorderColorInputPassword(red1);
+        }
+
+        if(reqDigit.test(password)){
+            setPasswordReguirementDigit(greenRequirements);
+        }else {
+            setPasswordReguirementDigit(redRequirements);
+            setInputPasswordName("reqNoForInput");
+            setBorderColorInputPassword(red1);
+        }
+
+        if((password.length >= 8)
             && reqLetter.test(password)
             && reqDigit.test(password)) {
                 setInputPasswordName("reqForInput");
                 setBorderColorInputPassword(blue);
                 if(inputEmailName === "reqForInput"){
-                    setAllow(false);
+                    setDisableSubmitButton(false);
                 }
-        } else {
-            setAllow(true)
+        }else {
+            setDisableSubmitButton(true);
         }
-        if (password.length === 0){
+
+        if(password.length === 0){
             setBorderColorInputPassword(blue);
             setInputPasswordName( "noLengthForInput");
+            setPasswordReguirementCharacters(grayRequirements);
+            setPasswordReguirementLetter(grayRequirements);
+            setPasswordReguirementDigit(grayRequirements);
         }
     }
 
+    //reset for inputs
+    const resetForm = () => {
+        setEmail("");
+        setPass("");
+    }
+
+    //function for submit - reset inputs
+    //and hide first step/show second step
+    const submitFirtstStepRegistration = (e) => {
+        e.preventDefault();
+        resetForm();
+        props.show(email, pass, false);
+    }
+
   return (
-    <div className='registration first-step'>
-        <h1 className="h1-grey-1">
-            Ahoy you!
-        </h1>
-        <h1 className="h1-grey-2 h1-grey-1">
-            Care to register?
-        </h1>
-        <form className="first-form form"
-            onSubmit={handleSubmit}>
-            <label>email</label>
-            <div className="input-div">
-                <input type="email"
+    <section className='registration'>
+        <header className="registration__headings">
+            <h1 className="registration__headings__first">
+                Ahoy you!
+            </h1>
+            <h1 className="registration__headings__second registration__headings__first">
+                Care to register?
+            </h1>
+        </header>
+        <form className="registration__form"
+            onSubmit={submitFirtstStepRegistration}>
+            <div className="registration__inputdiv">  
+                <label
+                    className="registration__inputdiv__label" htmlFor="email">
+                    email
+                </label>
+                <input
+                    className="registration__inputdiv__input"
+                    type="email"
+                    id="email"
                     name={inputEmailName}
                     style={{
                         borderColor: borderColorInputEmail
                         }}
                     onChange ={(e) => {
                         setEmail(e.target.value)
-                        checkingEmail(e.target.value)
+                        checkEmailRequirements(e.target.value)
                         }}
                     onFocus= {() => {
                         onFocusEmailInput()
@@ -165,10 +186,15 @@ export default function FirstStep(props) {
                     required
                 />
             </div>
-            <label>password</label>
-            <div className="input-div input-red-border-focus">
-                <input className="input"
-                    type={typeInput}
+            <div className="registration__inputdiv">
+                <label
+                    className="registration__inputdiv__label" htmlFor="password">
+                    password
+                </label>
+                <input
+                    className="registration__inputdiv__input"
+                    type={typePasswordInput}
+                    id="password"
                     name={inputPasswordName}
                     style={{
                         borderColor: borderColorInputPassword
@@ -187,48 +213,51 @@ export default function FirstStep(props) {
                     placeholder="Enter your password" 
                     required
                 />
-                <button type="button"
+                <button
+                    className="registration__inputdiv--button"
+                    type="button"
                     onClick = {() => {
-                        if(typeInput === "password"){
-                            setTypeInput("text")
+                        if(typePasswordInput === "password"){
+                            setTypePasswordInput("text")
                         } else {
-                            setTypeInput("password")
+                            setTypePasswordInput("password")
                         }
                     }}
                     alt="eye">
                 </button>
             </div>
-            <div className="password-requirements">
-                <h2 className="first-req"
+            <div className="registration--password-requirements">
+                <p
                     style={{
-                        color: passReguirementCharacters ? "green" : "red"
+                        color: passwordReguirementCharacters 
                         }}>
                     At least 8 characters
-                </h2>
-                <h2 className="second-req"
+                </p>
+                <p
                     style={{
-                        color: passReguirementLetter ? "green" : "red"
+                        color: passwordReguirementLetter
                         }}>
                     At least one letter
-                </h2>
-                <h2 className="third-req"
+                </p>
+                <p
                     style={{
-                        color: passReguirementDigit ? "green" : "red"
+                        color: passwordReguirementDigit
                         }}>
                     At least one digit
-                </h2>
+                </p>
             </div>
-            <div className="container-btn">
-                <a href={url}>
+            <div className="registration__buttons">
+                <a className="registration__buttons__login"
+                    href={url}>
                     Log in instead
                 </a>
                 <button 
-                    className="first-step-sub-btn"
-                    disabled={allow}>
+                    className="registration__buttons__button"
+                    disabled={disableSubmitButton}>
                     Next step
                 </button>
             </div>
         </form>
-    </div>
+    </section>
   )
 }

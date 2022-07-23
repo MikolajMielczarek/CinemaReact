@@ -5,24 +5,28 @@ export default function SecondStep(props) {
     const blue = "#2F80ED";
     const red1 = "#EC1115";
     const gray1 = "#F7F7F7";
+    const grayInputDate = "#343541";
+    const placeholderGray = "#85868D";
     const url = "#";
     
     
     const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [dateBirth, setDateBirth] = useState("");
     const [inputFirstNameName, setInputFirstNameName] = useState("");
-    const [inputLastNameName, setInputLastNameName] = useState("");
-    const [inputDateName, setInputDateName] = useState("");
-
     const [borderColorInputFirstName, setBorderColorInputFirstName] = useState("");
+
+    const [lastName, setLastName] = useState("");
+    const [inputLastNameName, setInputLastNameName] = useState("");
     const [borderColorInputLastName, setBorderColorInputLastName] = useState("");
+
+    const [dateBirth, setDateBirth] = useState("");
+    const [inputDateName, setInputDateName] = useState("");
     const [borderColorInputDate, setBorderColorInputDate] = useState("");
+    const [colorInputDate, setColorInputDate] = useState("");
     
-    const [allow, setAllow] = useState(false);
+    const [disableSubmitButton, setDisableSubmitButton] = useState(false);
 
 
-    //first name
+    //all for input first name
     const onFocusFirstNameInput = () => {
         if(inputFirstNameName === "reqForInput" || inputFirstNameName === "noLengthForInput") {
             setBorderColorInputFirstName(blue);
@@ -37,18 +41,18 @@ export default function SecondStep(props) {
 
     //function to check firs name input
     const checkingFirstName = firstName => {
-        
+        //because there are no first names with 1 letter
+        //added check for length
         if(firstName !== "" && firstName[0].toUpperCase() === firstName[0] && firstName.length >= 2){
             setBorderColorInputFirstName(blue);
             setInputFirstNameName("reqForInput");
             if(inputLastNameName === "reqForInput" && inputDateName === "reqForInput"){
-                setAllow(false);
+                setDisableSubmitButton(false);
             }
-
-        }else{
+        }else {
             setBorderColorInputFirstName(red1);
             setInputFirstNameName("reqNoForInput");
-            setAllow(true);
+            setDisableSubmitButton(true);
         }
 
         if(firstName.length === 0){
@@ -57,7 +61,7 @@ export default function SecondStep(props) {
         }
     }
 
-    ////last name 
+    ////all for input last name 
     const onFocusLastNameInput = () => {
         if(inputLastNameName === "reqForInput" || inputLastNameName === "noLengthForInput") {
             setBorderColorInputLastName(blue);
@@ -72,18 +76,18 @@ export default function SecondStep(props) {
 
     //function to check last name input
     const checkingLastName = lastName => {
-    
+        //because there are no last names with 1 letter
+        //added check for length
         if(lastName !== "" && lastName[0].toUpperCase() === lastName[0] && lastName.length >= 2){
             setBorderColorInputLastName(blue);
             setInputLastNameName("reqForInput");
             if(inputFirstNameName === "reqForInput" && inputDateName === "reqForInput"){
-                setAllow(false);
+                setDisableSubmitButton(false);
             }
-
-        }else{
+        }else {
             setBorderColorInputLastName(red1);
             setInputLastNameName("reqNoForInput");
-            setAllow(true);
+            setDisableSubmitButton(true);
         }
 
         if(lastName.length === 0){
@@ -94,6 +98,7 @@ export default function SecondStep(props) {
 
     //date input 
     const onFocusDateInput = () => {
+        setColorInputDate(grayInputDate);
         if(inputDateName === "reqForInput" || inputDateName === "noLengthForInput") {
             setBorderColorInputDate(blue);
         }
@@ -103,32 +108,36 @@ export default function SecondStep(props) {
         if(inputDateName === "reqForInput" || inputDateName === "noLengthForInput") {
             setBorderColorInputDate(gray1);
         }
+
+        if(inputDateName === "noLengthForInput"){
+            setColorInputDate(placeholderGray);
+        }
     }
 
     //check if date in input date is over eighteen
     //and set disable and alert
     const overEighteen = dateOfBirth => {
-    const dayOfBirth = new Date(dateOfBirth);
-    const eighteenAgo = new Date();
-    eighteenAgo.setFullYear(eighteenAgo.getFullYear() - 18);
+        const dayOfBirth = new Date(dateOfBirth);
+        const eighteenAgo = new Date();
+        eighteenAgo.setFullYear(eighteenAgo.getFullYear() - 18);
 
-    if (dayOfBirth <= eighteenAgo) {
-        setBorderColorInputDate(blue);
-        setInputDateName("reqForInput");
-        if(inputFirstNameName === "reqForInput" && inputLastNameName === "reqForInput"){
-        setAllow(false);
+        if(dayOfBirth <= eighteenAgo) {
+            setBorderColorInputDate(blue);
+            setInputDateName("reqForInput");
+            if(inputFirstNameName === "reqForInput" && inputLastNameName === "reqForInput"){
+            setDisableSubmitButton(false);
+            }
+        }else {
+            setBorderColorInputDate(red1);
+            setInputDateName("reqNoForInput");
+            setDisableSubmitButton(true);
         }
-    }else{
-        setBorderColorInputDate(red1);
-        setInputDateName("reqNoForInput");
-        setAllow(true);
-    }
 
-    if(dateOfBirth === "") {
-        setBorderColorInputDate(blue);
-        setInputDateName("noLengthForInput");
+        if(dateOfBirth === "") {
+            setBorderColorInputDate(blue);
+            setInputDateName("noLengthForInput");
+        }
     }
-}
 
     //function for reset values of inputs
     const resetForm = () => {
@@ -139,118 +148,147 @@ export default function SecondStep(props) {
 
     //reset inputs and hide second step/show succes
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         props.show(firstName,
             lastName,
             dateBirth,
-            false)
-        resetForm()    
+            false);
+        resetForm();   
     }
 
   return (
-    <div className='registration second-step'>
-            <h1 className="h1-grey-1">
+    <section className='registration'>
+        <header className="registration__headings">
+            <h1 className="registration__headings__first">
                 Greate!
             </h1>
-            <h1 className="h1-grey-2 h1-grey-1">
+            <h1 className="registration__headings__second registration__headings__first">
                 Now your name
             </h1>
-            <form className="first-form form"
+        </header>
+        <form className="registration__form"
                 onSubmit={handleSubmit}>
-                <label>first name</label>
-                <div className="input-div">
-                    <input type="text"
-                        name={inputFirstNameName}
-                        style={{
-                            borderColor: borderColorInputFirstName
-                            }}
-                        onChange ={(e) => {
-                            setFirstName(e.target.value)
-                            checkingFirstName(e.target.value)
-                            }}
-                        onFocus= {() => {
-                            onFocusFirstNameInput()
-                            }}
-                        onBlur= {() => {
-                            onBlurFirstNameInput()
-                            }}
-                        value={firstName}
-                        placeholder="e.g. Jessica"
-                        required
-                    />
-                </div>
-                <label>last name</label>
-                    <div className="input-div">
-                    <input className="input"
-                        type="text"
-                        name={inputLastNameName}
-                        style={{
-                            borderColor: borderColorInputLastName
-                            }}
-                        onChange = {(e) => {
-                            setLastName(e.target.value)
-                            checkingLastName(e.target.value)
-                            }}
-                        onFocus= {() => {
-                            onFocusLastNameInput()
-                            }}
-                        onBlur= {() => {
-                            onBlurLastNameInput()
-                            }}
-                        value={lastName}
-                        placeholder="e.g. Walton" 
-                        required
-                    />
-                </div>
-                <label>date of birth</label>
-                    <div className="input-div">
-                    <input className="input"
-                        type="date"
-                        name={inputDateName}
-                        style={{
-                            borderColor: borderColorInputDate
-                            }}
-                        onChange = {(e) => {
-                            setAllow(true)
-                            setDateBirth(e.target.value)
-                            overEighteen(e.target.value)
-                            }}
-                        onFocus= {() => {
-                            onFocusDateInput()
-                            }}
-                        onBlur= {() => {
-                            onBlurDateInput()
-                            }}
-                        value={dateBirth}
-                        required
-                    />
-                </div>
-                <h2 className="password-requirements">
-                    You should be minium 18 years old
-                </h2>
-                <div className="input-div-check">
-                    <input className="input-check"
-                        type="checkbox"
-                        required
-                    />
-                    <span className="txt">
-                        &nbsp;&nbsp;I accept&nbsp;
-                    </span>
-                    <a className="txt"
-                        href={url}>
-                        Privacy Policy
-                    </a>
-                </div>
-                <div className="container-btn">
-                    <a href={url}>
-                        Log in instead
-                    </a>
-                    <button className="second-step-sub-btn"
-                        disabled={allow}>
-                        Register
-                    </button>
-                </div>
-            </form>
-        </div>
+            <div className="registration__inputdiv">
+                <label
+                    className="registration__inputdiv__label"
+                    htmlFor="firstName">
+                    first name
+                </label>
+                <input
+                    className="registration__inputdiv__input"
+                    type="text"
+                    id="firstName"
+                    name={inputFirstNameName}
+                    style={{
+                        borderColor: borderColorInputFirstName
+                        }}
+                    onChange ={(e) => {
+                        setFirstName(e.target.value)
+                        checkingFirstName(e.target.value)
+                        }}
+                    onFocus= {() => {
+                        onFocusFirstNameInput()
+                        }}
+                    onBlur= {() => {
+                        onBlurFirstNameInput()
+                        }}
+                    value={firstName}
+                    placeholder="e.g. Jessica"
+                    required
+                />
+            </div>
+            <div className="registration__inputdiv">
+                <label
+                    className="registration__inputdiv__label"
+                    htmlFor="lastName">
+                    last name
+                </label>
+                <input
+                    className="registration__inputdiv__input"
+                    type="text"
+                    id="lastName"
+                    name={inputLastNameName}
+                    style={{
+                        borderColor: borderColorInputLastName
+                        }  
+                    }
+                    onChange = {(e) => {
+                        setLastName(e.target.value)
+                        checkingLastName(e.target.value)
+                        }}
+                    onFocus= {() => {
+                        onFocusLastNameInput()
+                        }}
+                    onBlur= {() => {
+                        onBlurLastNameInput()
+                        }}
+                    value={lastName}
+                    placeholder="e.g. Walton" 
+                    required
+                />
+            </div>
+            <div className="registration__inputdiv">
+                <label
+                    className="registration__inputdiv__label"
+                    htmlFor="date">
+                    date of birth
+                </label>
+                <input
+                    className="registration__inputdiv__input registration__inputdiv--inputdate"
+                    type="date"
+                    id="date"
+                    name={inputDateName}
+                    style={{
+                        borderColor: borderColorInputDate,
+                        color: colorInputDate
+                        }}
+                    onChange = {(e) => {
+                        setDisableSubmitButton(true);
+                        setDateBirth(e.target.value);
+                        overEighteen(e.target.value);
+                        setColorInputDate(grayInputDate);
+                        }}
+                    onFocus= {() => {
+                        onFocusDateInput();
+                        }}
+                    onBlur= {() => {
+                        onBlurDateInput();
+                        }}
+                    value={dateBirth}
+                    required
+                />
+            </div>
+            <p className="registration--age">
+                You should be minium 18 years old
+            </p>
+            <div className="registration--divcheck">
+                <input
+                    className="registration__divcheck--input"
+                    type="checkbox"
+                    required
+                />
+                <span>
+                    &nbsp;&nbsp;I accept&nbsp;
+                </span>
+                <a
+                    className="registration__divcheck--privacy"
+                    href={url}>
+                    Privacy Policy
+                </a>
+            </div>
+            <div className="registration__buttons">
+                <a
+                    className="registration__buttons__login"
+                    href={url}>
+                    Log in instead
+                </a>
+                <button
+                    className="registration__buttons__button"
+                    disabled={disableSubmitButton}>
+                    Register
+                </button>
+            </div>
+        </form>
+    </section>
   )
 }

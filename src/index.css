@@ -13,7 +13,7 @@
     /*font family*/
     --h1-family: 'Eczar';
     --label-font: 'Roboto Mono';
-    --h2-txt-family: 'Roboto';
+    --p-txt-family: 'Roboto';
 
     /*colors*/
     --gray-font: #343541;
@@ -25,12 +25,12 @@
     --placeholder-color: #85868D;
 
     /*size*/
-    --font-size-80: 80px;
-    --line-height-80: 82px;
-    --font-size-22: 22px;
-    --font-size-18: 18px;
-    --font-size-14: 14px;
-    --line-height-14: 18px;
+    --font-size-80: 5rem;
+    --line-height-80: 5.125rem;
+    --font-size-22: 1.375rem;
+    --font-size-18: 1.125rem;
+    --font-size-14: 0.875rem;
+    --line-height-14: 1.125rem; 
     --font-weight-400: 400;
     --font-weight-500: 500;
     --font-weight-600: 600;
@@ -48,10 +48,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
-    background-color: var(--bgc-color-white);
+  
+  body {
+    background: var(--bgc-color-white);
 }
+
 /***Container for all content***/
 .container-page {
     display: flex;
@@ -61,7 +62,7 @@ body {
     width: var(--width-100);
 }
 
-.container-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -79,35 +80,45 @@ body {
     justify-content: center;
     align-items: center;
     padding-top: 124px;
+    padding-bottom: 124px;
 }
 
-.h1-grey-1 {
-    font-family: var(--h1-family);
+.registration__headings {
+    width: var(--width-100);
+}
+
+.registration__headings__first {
     width: 95%;
+    padding-left: 50px;
+    font-family: var(--h1-family);
+    color: var(--gray-font);
     font-size: var(--font-size-80);
     font-weight: var(--font-weight-600);
     line-height: var(--line-height-80);
-    letter-spacing: -0,01em;
-    color: var(--gray-font);
-    padding-left: 50px;
 }
 
-.h1-grey-2 {
+.registration__headings__second {
     opacity: 0.6;
     padding-bottom: 40px;
 }
 
-.form {
+.registration__form {
     display: flex;
     flex-direction: column;
     width: 85%;
-    background-color: var(--bgc-color-white);
+    background: var(--bgc-color-white);
     box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
     border-radius: 24px;
     padding:  64px;
 }
 
-label {
+.registration__inputdiv {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.registration__inputdiv__label {
     width: 60%;
     font-family: var(--label-font);
     font-style: normal;
@@ -120,24 +131,16 @@ label {
     padding-bottom: 12px;
 }
 
-.input-div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: var(--bgc-input-gray);
-    border-radius: 8px;
-}
-
 ::placeholder {
     color: var(--placeholder-color);
     opacity: 1; /* Firefox */
   }
 
-.input-div input {
+.registration__inputdiv__input {
     height: 55px;
     width: var(--width-100);
     font-size: var(--font-size-18);
-    background-color: var(--bgc-input-gray);
+    background: var(--bgc-input-gray);
     border-style: var(--border-style-1);
     border-color: var(--bgc-input-gray);
     border-width: var(--border-width-1);
@@ -146,49 +149,33 @@ label {
     padding: 24px;
 }
 
-.input-div input:hover {
-    background-color: var(--bgc-input-hover);
+.registration__inputdiv__input:hover {
+    background: var(--bgc-input-hover);
     border-color: var(--bgc-input-hover);
 }
 
-.input-div input:focus {
+.registration__inputdiv__input:focus {
     outline: none !important;
     border-color: var(--border-color-blue);
 }
 
-.container-btn-pass {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--width-100);
-    position: relative;
-}
-
-.input-div .input-password {
-    width: var(--width-100);
-    flex-grow: 1;
-}
-
-.input-div button {
+.registration__inputdiv--button {
     background-image: url("assets/eye.svg");
     background-position: center;
-    background-color:rgba(0, 0, 0, 0.0);
+    background:rgba(0, 0, 0, 0.0);
     width:30px;
     height: 22px;
     border-style: none;
     cursor: pointer;
     position: absolute;
-    right: 33%;
+    top: 65px;
+    right: 3%;
 }
 
-
-.password-requirements {
+.registration--password-requirements, .registration--age {
     padding-top: 8px;
     padding-bottom: 30px;
-}
-
-h2 {
-    font-family: var(--h2-txt-family);
+    font-family: var(--p-txt-family);
     font-style: normal;
     font-weight: var(--font-weight-400);
     font-size: var(--font-size-14);
@@ -197,13 +184,13 @@ h2 {
     color: var(--gray-font);
 }
 
-.container-btn {
+.registration__buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-a {
+.registration__buttons__login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,7 +204,7 @@ a {
     text-decoration: none;
 }
 
-.container-btn button {
+.registration__buttons__button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -230,50 +217,39 @@ a {
     letter-spacing: 0.015em;
     color: var(--bgc-color-white);
     padding: 20px 40px;
-    background-color: var(--red-1-normal);
+    background: var(--red-1-normal);
     border-radius: 64px;
     border: 5px solid var(--red-1-normal);
 
 }
 
-.container-btn button:hover {
+.registration__buttons__button:hover {
     background: var(--red-2-hover);
     border-color:var(--red-2-hover);
 }
 
-.container-btn button:active {
+.registration__buttons__button:active {
     border: 5px solid var(--red-4-border-active);
     background: var(--red-2-hover);
 }
 
 /***second step of registration***/
 
-.input-div .input-date {
+.registration__inputdiv--inputdate {
     color: var(--placeholder-color);
 }
 
-.input-div .input-date:focus {
+.registration__inputdiv--inputdate:focus {
     color:var(--gray-font);
 }
 
-.input-div-check {
+.registration--divcheck {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding-bottom: 40px;
-}
-
-.input-check {
-    box-sizing: border-box;
-    width: 24px;
-    height: 24px;
-    border: 0.75px solid #AEAEB3;
-    border-radius: 8px;
-}
-
-.txt {
-    font-family: var(--h2-txt-family);
+    font-family: var(--p-txt-family);
     font-style: normal;
     font-weight: var(--font-weight-400);
     font-size: var(--font-size-18);
@@ -282,7 +258,12 @@ a {
     color: var(--gray-2-font);
 }
 
-.input-div-check a {
+.registration__divcheck--input {
+    width: 24px;
+    height: 24px;
+}
+
+.registration__divcheck--privacy {
     text-decoration: underline !important;
     color: var(--gray-2-font);
 }
@@ -293,13 +274,14 @@ a {
     padding-top: 320px;
 }
 
-.h1-name {
+.registration__headings__succes {
+    display: flex;
+    justify-content: center;
     padding-bottom: 48px;
-    padding-left: 0px;
     width: auto;
 }
 
-.h3-email {
+.registration--succesh3 {
     font-family: 'Roboto';
     font-weight: var(--font-weight-400);
     font-size: var(--font-size-18);
@@ -309,18 +291,18 @@ a {
     color: var(--gray-2-font);
 }
 
-.h3-email span {
+.registration--succesh3--span {
     font-weight: var(--font-weight-700);
 }
 
-.container-btn-2 {
+.registration--succes-div-button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 80%;
 }
 
-.container-btn-2 button {
+.registration--succes-div-button--button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -333,17 +315,17 @@ a {
     letter-spacing: 0.015em;
     color: var(--bgc-color-white);
     padding: 14px 5px;
-    background-color: var(--red-1-normal);
+    background: var(--red-1-normal);
     border-radius: 64px;
     border: 5px solid var(--red-1-normal);
 }
 
-.last-btn:hover {
+.registration--succes-div-button--button:hover {
     background: var(--red-2-hover);
     border-color: var(--red-2-hover);
 }
 
-.last-btn:active {
+.registration--succes-div-button--button:active {
     border: 5px solid var(--red-4-border-active);
 }
 
@@ -352,7 +334,6 @@ a {
     display: none;
 }
 
-
 /**** MEDIA QUERIES ****/
 
 @media (max-width:1312px) {
@@ -360,30 +341,26 @@ a {
         width:75%;
     }
 
-    .h1-grey-1 {
+    .registration__headings__first {
         padding-left: 95px;
     }
     
-    .form {
+    .registration__form {
         width: 80%;
     }
     
-    .container-btn button {
+    .registration__buttons__button {
         width: 50%;
-    }
-
-    .input-div button {
-        right: 28%;
     }
     
     /***third step of registration***/
    
    
-    .success-message h1 {
+    .registration__headings__succes {
         padding-left: 0px;
     }
     
-    .container-btn-2 button {
+    .registration--succes-div-button--button {
         width: 35%;
     }
 
@@ -391,21 +368,21 @@ a {
 
 @media (max-width:1200px) {
     
-    .h1-grey-1 {
+    .registration__headings__first {
         padding-left: 60px;
     }
     
-    .form {
+    .registration__form {
         width: 80%;
     }
-    .container-btn button {
+    .registration__buttons__button {
         width: 47%;
         padding: 14px 40px;
     }
 
     /***third step of registration***/
     
-    .container-btn-2 button {
+    .registration--succes-div-button--button {
         width: 36%;
     }
 
@@ -413,12 +390,12 @@ a {
 
 @media (max-width:992px) {
 
-    .container-header {
+    .header {
         justify-content: center;
         padding: 24px 0px 70px 0px;
     }
 
-    .container-header img:last-of-type {
+    .header__love {
         display: none;
     }
 
@@ -427,132 +404,120 @@ a {
         padding: 24px 24px 22px 24px;
     }
 
-    .h1-grey-1 {
-        font-size: 60px;
-        line-height: 61px;
+    .registration__headings__first {
+        font-size: 3.75rem;
+        line-height: 3.813rem;
         text-align: center;
         padding-left: 0px;
     }
 
-    .h1-grey-2 {
+    .registration__headings__second {
         padding-bottom: 48px;
     }
 
-    .form {
+    .registration__form {
         width: 74%;
         box-shadow: none;
         padding-top: 0px;
     }
     
-    .container-btn button {
+    .registration__buttons__button {
         width: 47%;
         padding: 14px 40px;
     }
-
-    .input-div button {
-        right: 25%;
-    }
     
     /***third step of registration***/
-    .h1-name {
+    .registration__headings__succes {
         padding-top: 80px;
         padding-bottom: 48px;
     }
 
-    .h3-email {
+    .registration--succesh3 {
         padding-bottom: 48px;
     }
 
-    .container-btn-2 button {
+    .registration--succes-div-button--button {
         width: 38%;
     }
 }
 
 @media (max-width:768px) {
 
-    .h1-grey-1 {
-        font-size: 53px;
-        line-height: 54px;
+    .registration__headings__first {
+        font-size: 3.313rem;
+        line-height: 3.375rem;
     }
 
-    .form {
+    .registration__form {
         width: 80%;
         padding: 0px;
     }
-    .container-btn {
+    .registration__buttons {
         flex-direction: column-reverse;
         align-items: center;
     }
 
-    a {
+    .registration__buttons__login {
         padding-top: 35px;
     }
 
-    .container-btn button {
+    .registration__buttons__button {
         width: 65%;
-    }
-
-    .input-div button {
-        right: 17%;
     }
 
     /***second step of registration***/
 
-    .input-div-check a {
+    .registration__divcheck--privacy {
         padding: 0px;
     }
     
     /***third step of registration***/
-    .h1-name {
+    .registration__headings__succes {
         padding-top: 69px;
     }
 
-    .h3-email {
+    .registration--succesh3 {
         width: 65%;
     }
 
-    .container-btn-2 button {
+    .registration--succes-div-button--button {
         width: 70%;
     }
 }
 
 @media (max-width:480px) {
 
-    .container-header {
+    .header {
         padding-bottom:64px;
     }
 
-    .h1-grey-1 {
-        font-size: 40px;
-        line-height: 41px;
+    .registration__headings__first {
+        font-size: 2.5rem;
+        line-height: 2.563rem;
     }
 
-    .form {
+    .registration__form {
         width: var(--width-100);
     }
 
-    .container-btn button {
+    .registration__buttons__button {
         width: var(--width-100);
-    }
-
-    .input-div button {
-        right: 10%;
     }
     
     /***third step of registration***/
-    .h1-name {
+    .registration__headings__succes {
         padding-top: 51px;
     }
 
-    .h3-email {
+    .registration--succesh3 {
         width: var(--width-100);
     }
 
-    .container-btn-2 {
+    .registration--succes-div-button {
         width: var(--width-100);
     }
 
-    .container-btn-2 button {
+    .registration--succes-div-button--button {
         width: var(--width-100);
         padding: 14px 0px;
     }

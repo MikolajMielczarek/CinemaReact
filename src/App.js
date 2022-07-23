@@ -5,8 +5,6 @@ import Header from './components/Header';
 import SecondStep from './components/SecondStep';
 import Succes from './components/Succes';
 
-
-
 function App() {
   //display and display2 use for show or hide content
   const [display, setDisplay] = useState(true);
@@ -53,15 +51,18 @@ function App() {
       <Header />
 
       { display && display2 &&
-      <FirstStep show={changeShow} />
+        <FirstStep show={changeShow} />
       }
 
       { !display && display2 &&
-      <SecondStep show={changeShow2} />
+        <SecondStep show={changeShow2} />
       }
 
       { !display && !display2 &&
-      <Succes firstName={firstName} email={email} show={changeShowSucces} />
+        <Succes firstName={firstName}
+          email={email}
+          show={changeShowSucces}
+        />
       }
 
     </div>

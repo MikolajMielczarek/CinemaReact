@@ -3,9 +3,17 @@ import love from '../assets/love.svg';
 
 export default function Header() {
   return (
-    <div className="container-header">
-        <img src={logo} alt="logo of cinema" />
-        <img src={love} alt="love" />
-    </div>
+    <header className="header">
+        <img 
+          className='header__logo'
+          src={logo}
+          alt="logo of cinema"
+        />
+        <img
+          className='header__love'
+          src={love}
+          alt="love sign"
+        />
+    </header>
   )
 }
