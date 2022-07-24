@@ -149,10 +149,10 @@ export default function FirstStep(props) {
   return (
     <section className='registration'>
         <header className="registration__headings">
-            <h1 className="registration__headings__first">
+            <h1 className="registration__headings__heading">
                 Ahoy you!
             </h1>
-            <h1 className="registration__headings__second registration__headings__first">
+            <h1 className="registration__headings__heading">
                 Care to register?
             </h1>
         </header>
@@ -223,7 +223,7 @@ export default function FirstStep(props) {
                             setTypePasswordInput("password")
                         }
                     }}
-                    alt="eye">
+                >
                 </button>
             </div>
             <div className="registration--password-requirements">

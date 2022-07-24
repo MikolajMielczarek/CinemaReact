@@ -112,6 +112,7 @@ export default function SecondStep(props) {
         if(inputDateName === "noLengthForInput"){
             setColorInputDate(placeholderGray);
         }
+
     }
 
     //check if date in input date is over eighteen
@@ -159,10 +160,10 @@ export default function SecondStep(props) {
   return (
     <section className='registration'>
         <header className="registration__headings">
-            <h1 className="registration__headings__first">
+            <h1 className="registration__headings__heading">
                 Greate!
             </h1>
-            <h1 className="registration__headings__second registration__headings__first">
+            <h1 className=" registration__headings__heading">
                 Now your name
             </h1>
         </header>

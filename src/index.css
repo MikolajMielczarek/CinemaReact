@@ -87,7 +87,7 @@
     width: var(--width-100);
 }
 
-.registration__headings__first {
+.registration__headings__heading {
     width: 95%;
     padding-left: 50px;
     font-family: var(--h1-family);
@@ -97,7 +97,7 @@
     line-height: var(--line-height-80);
 }
 
-.registration__headings__second {
+.registration__headings__heading + .registration__headings__heading {
     opacity: 0.6;
     padding-bottom: 40px;
 }
@@ -163,12 +163,12 @@
     background-image: url("assets/eye.svg");
     background-position: center;
     background:rgba(0, 0, 0, 0.0);
-    width:30px;
-    height: 22px;
+    width:32px;
+    height: 32px;
     border-style: none;
     cursor: pointer;
     position: absolute;
-    top: 65px;
+    top: calc();
     right: 3%;
 }
 
@@ -341,7 +341,7 @@
         width:75%;
     }
 
-    .registration__headings__first {
+    .registration__headings__heading {
         padding-left: 95px;
     }
     
@@ -368,7 +368,7 @@
 
 @media (max-width:1200px) {
     
-    .registration__headings__first {
+    .registration__headings__heading {
         padding-left: 60px;
     }
     
@@ -404,14 +404,14 @@
         padding: 24px 24px 22px 24px;
     }
 
-    .registration__headings__first {
+    .registration__headings__heading {
         font-size: 3.75rem;
         line-height: 3.813rem;
         text-align: center;
         padding-left: 0px;
     }
 
-    .registration__headings__second {
+    .registration__headings__heading + .registration__headings__heading {
         padding-bottom: 48px;
     }
 
@@ -443,7 +443,7 @@
 
 @media (max-width:768px) {
 
-    .registration__headings__first {
+    .registration__headings__heading {
         font-size: 3.313rem;
         line-height: 3.375rem;
     }
@@ -491,7 +491,7 @@
         padding-bottom:64px;
     }
 
-    .registration__headings__first {
+    .registration__headings__heading {
         font-size: 2.5rem;
         line-height: 2.563rem;
     }

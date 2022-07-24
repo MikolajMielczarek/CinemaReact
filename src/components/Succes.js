@@ -10,7 +10,7 @@ export default function Succes(props) {
   return (
     <section className="registration success-message">
       <header className="registration__headings">
-        <h1 className="registration__headings__succes registration__headings__first">
+        <h1 className="registration__headings__succes registration__headings__heading">
           Good job {props.firstName}!
         </h1>
       </header> 
