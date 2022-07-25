@@ -88,7 +88,7 @@ section header {
 }
 
 h1 {
-    padding-left: 50px;
+    padding-left: 60px;
     font-family: var(--h1-family);
     color: var(--gray-font);
     font-size: var(--font-size-80);
@@ -207,7 +207,8 @@ a + button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
+    width: 228px;
+    height: 56px;
     font-family: var(--label-font);
     font-style: normal;
     font-weight: var(--font-weight-500);
@@ -348,9 +349,6 @@ h3 + div > button:active {
         width: 80%;
     }
     
-    a + button {
-        width: 50%;
-    }
     
     /***third step of registration***/
    
@@ -368,14 +366,13 @@ h3 + div > button:active {
 @media (max-width:1200px) {
     
     h1{
-        padding-left: 60px;
+        padding-left: 85px;
     }
     
     form {
         width: 80%;
     }
     a + button {
-        width: 47%;
         padding: 14px 40px;
     }
 
@@ -420,14 +417,12 @@ h3 + div > button:active {
         padding-top: 0px;
     }
     
-    a + button {
-        width: 47%;
-        padding: 14px 40px;
-    }
-    
     /***third step of registration***/
+    .success-message {
+        padding-top: 200px;
+    }
+
     .registration__headings--succes {
-        padding-top: 80px;
         padding-bottom: 48px;
     }
 
@@ -462,7 +457,7 @@ h3 + div > button:active {
     }
 
     a + button {
-        width: 65%;
+        width: 327px;
     }
 
     /***second step of registration***/
@@ -472,6 +467,10 @@ h3 + div > button:active {
     }
     
     /***third step of registration***/
+    .success-message {
+        padding-top: 139px;
+    }
+
     .registration__headings--succes {
         padding-top: 69px;
     }
@@ -481,7 +480,7 @@ h3 + div > button:active {
     }
 
     h3 + div > button {
-        width: 70%;
+        width: 327px;
     }
 }
 
@@ -503,10 +502,11 @@ h3 + div > button:active {
     a + button {
         width: var(--width-100);
     }
+
     
     /***third step of registration***/
     .registration__headings--succes {
-        padding-top: 51px;
+        padding-top: 0px;
     }
 
     h3 {
