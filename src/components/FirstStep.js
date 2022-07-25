@@ -147,24 +147,24 @@ export default function FirstStep(props) {
     }
 
   return (
-    <section className='registration'>
-        <header className="registration__headings">
-            <h1 className="registration__headings__heading">
+    <section>
+
+        <header>
+            <h1 >
                 Ahoy you!
             </h1>
-            <h1 className="registration__headings__heading">
+            <h1 >
                 Care to register?
             </h1>
         </header>
-        <form className="registration__form"
-            onSubmit={submitFirtstStepRegistration}>
-            <div className="registration__inputdiv">  
-                <label
-                    className="registration__inputdiv__label" htmlFor="email">
+
+        <form onSubmit={submitFirtstStepRegistration}>
+
+            <div>  
+                <label htmlFor="email">
                     email
                 </label>
                 <input
-                    className="registration__inputdiv__input"
                     type="email"
                     id="email"
                     name={inputEmailName}
@@ -186,13 +186,12 @@ export default function FirstStep(props) {
                     required
                 />
             </div>
-            <div className="registration__inputdiv">
-                <label
-                    className="registration__inputdiv__label" htmlFor="password">
+
+            <div>
+                <label htmlFor="password">
                     password
                 </label>
                 <input
-                    className="registration__inputdiv__input"
                     type={typePasswordInput}
                     id="password"
                     name={inputPasswordName}
@@ -214,18 +213,17 @@ export default function FirstStep(props) {
                     required
                 />
                 <button
-                    className="registration__inputdiv--button"
                     type="button"
                     onClick = {() => {
-                        if(typePasswordInput === "password"){
-                            setTypePasswordInput("text")
-                        } else {
-                            setTypePasswordInput("password")
-                        }
-                    }}
-                >
+                            if(typePasswordInput === "password"){
+                                setTypePasswordInput("text")
+                            } else {
+                                setTypePasswordInput("password")
+                            }
+                        }}>
                 </button>
             </div>
+
             <div className="registration--password-requirements">
                 <p
                     style={{
@@ -246,18 +244,19 @@ export default function FirstStep(props) {
                     At least one digit
                 </p>
             </div>
+
             <div className="registration__buttons">
-                <a className="registration__buttons__login"
-                    href={url}>
+                <a href={url}>
                     Log in instead
                 </a>
-                <button 
-                    className="registration__buttons__button"
-                    disabled={disableSubmitButton}>
+                <button disabled={disableSubmitButton}>
                     Next step
                 </button>
+
             </div>
+
         </form>
+        
     </section>
   )
 }

@@ -158,25 +158,24 @@ export default function SecondStep(props) {
     }
 
   return (
-    <section className='registration'>
-        <header className="registration__headings">
-            <h1 className="registration__headings__heading">
+    <section >
+
+        <header>
+            <h1 >
                 Greate!
             </h1>
-            <h1 className=" registration__headings__heading">
+            <h1>
                 Now your name
             </h1>
         </header>
-        <form className="registration__form"
-                onSubmit={handleSubmit}>
-            <div className="registration__inputdiv">
-                <label
-                    className="registration__inputdiv__label"
-                    htmlFor="firstName">
+
+        <form onSubmit={handleSubmit}>
+
+            <div>
+                <label htmlFor="firstName">
                     first name
                 </label>
                 <input
-                    className="registration__inputdiv__input"
                     type="text"
                     id="firstName"
                     name={inputFirstNameName}
@@ -198,14 +197,12 @@ export default function SecondStep(props) {
                     required
                 />
             </div>
-            <div className="registration__inputdiv">
-                <label
-                    className="registration__inputdiv__label"
-                    htmlFor="lastName">
+
+            <div>
+                <label htmlFor="lastName">
                     last name
                 </label>
                 <input
-                    className="registration__inputdiv__input"
                     type="text"
                     id="lastName"
                     name={inputLastNameName}
@@ -228,14 +225,13 @@ export default function SecondStep(props) {
                     required
                 />
             </div>
-            <div className="registration__inputdiv">
-                <label
-                    className="registration__inputdiv__label"
-                    htmlFor="date">
+
+            <div>
+                <label htmlFor="date">
                     date of birth
                 </label>
                 <input
-                    className="registration__inputdiv__input registration__inputdiv--inputdate"
+                    className="registration__inputdiv--inputdate"
                     type="date"
                     id="date"
                     name={inputDateName}
@@ -259,37 +255,35 @@ export default function SecondStep(props) {
                     required
                 />
             </div>
-            <p className="registration--age">
+
+            <p>
                 You should be minium 18 years old
             </p>
-            <div className="registration--divcheck">
+
+            <div>
                 <input
-                    className="registration__divcheck--input"
                     type="checkbox"
                     required
                 />
                 <span>
                     &nbsp;&nbsp;I accept&nbsp;
                 </span>
-                <a
-                    className="registration__divcheck--privacy"
-                    href={url}>
+                <a href={url}>
                     Privacy Policy
                 </a>
             </div>
+
             <div className="registration__buttons">
-                <a
-                    className="registration__buttons__login"
-                    href={url}>
+                <a href={url}>
                     Log in instead
                 </a>
-                <button
-                    className="registration__buttons__button"
-                    disabled={disableSubmitButton}>
+                <button disabled={disableSubmitButton}>
                     Register
                 </button>
             </div>
+
         </form>
+        
     </section>
   )
 }

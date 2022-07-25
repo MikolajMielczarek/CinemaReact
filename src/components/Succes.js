@@ -8,24 +8,26 @@ export default function Succes(props) {
     }
 
   return (
-    <section className="registration success-message">
-      <header className="registration__headings">
-        <h1 className="registration__headings__succes registration__headings__heading">
+    <section className="success-message">
+
+      <header>
+        <h1 className="registration__headings--succes">
           Good job {props.firstName}!
         </h1>
       </header> 
-      <h3 className="registration--succesh3">
+      
+      <h3>
         We have sent you an email to&nbsp; 
-        <span className="registration--succesh3--span">{props.email}</span>.<br />
+        <span>{props.email}</span>.<br />
         Make sure to click the link from the message to activate your account.
       </h3>
-      <div className="registration--succes-div-button">
-          <button
-            className="registration--succes-div-button--button"
-            onClick={finishRegistration}>
+
+      <div>
+          <button onClick={finishRegistration}>
             Go to homepage
           </button>
       </div>
+
     </section>
   )
 }

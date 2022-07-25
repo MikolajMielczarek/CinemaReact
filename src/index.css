@@ -62,7 +62,7 @@
     width: var(--width-100);
 }
 
-.header {
+.main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,7 +73,7 @@
 /***firs step of registration***/
 
 /*for three steps of registration same class*/
-.registration {
+section {
     display: flex;
     width:55%;
     flex-direction: column;
@@ -83,12 +83,11 @@
     padding-bottom: 124px;
 }
 
-.registration__headings {
+section header {
     width: var(--width-100);
 }
 
-.registration__headings__heading {
-    width: 95%;
+h1 {
     padding-left: 50px;
     font-family: var(--h1-family);
     color: var(--gray-font);
@@ -97,12 +96,12 @@
     line-height: var(--line-height-80);
 }
 
-.registration__headings__heading + .registration__headings__heading {
+h1 + h1 {
     opacity: 0.6;
     padding-bottom: 40px;
 }
 
-.registration__form {
+form {
     display: flex;
     flex-direction: column;
     width: 85%;
@@ -112,13 +111,13 @@
     padding:  64px;
 }
 
-.registration__inputdiv {
+form div {
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.registration__inputdiv__label {
+label {
     width: 60%;
     font-family: var(--label-font);
     font-style: normal;
@@ -136,7 +135,7 @@
     opacity: 1; /* Firefox */
   }
 
-.registration__inputdiv__input {
+input {
     height: 55px;
     width: var(--width-100);
     font-size: var(--font-size-18);
@@ -149,30 +148,30 @@
     padding: 24px;
 }
 
-.registration__inputdiv__input:hover {
+input:hover {
     background: var(--bgc-input-hover);
     border-color: var(--bgc-input-hover);
 }
 
-.registration__inputdiv__input:focus {
+input:focus {
     outline: none !important;
     border-color: var(--border-color-blue);
 }
 
-.registration__inputdiv--button {
-    background-image: url("assets/eye.svg");
+form div input + button {
     background-position: center;
     background:rgba(0, 0, 0, 0.0);
+    background-image: url("assets/eye.svg");
     width:32px;
     height: 32px;
     border-style: none;
     cursor: pointer;
     position: absolute;
-    top: calc();
+    top: 59.5px;
     right: 3%;
 }
 
-.registration--password-requirements, .registration--age {
+.registration--password-requirements, div + p {
     padding-top: 8px;
     padding-bottom: 30px;
     font-family: var(--p-txt-family);
@@ -190,7 +189,7 @@
     justify-content: space-around;
 }
 
-.registration__buttons__login {
+div > a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,7 +203,7 @@
     text-decoration: none;
 }
 
-.registration__buttons__button {
+a + button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,12 +222,12 @@
 
 }
 
-.registration__buttons__button:hover {
+a +  button:hover {
     background: var(--red-2-hover);
     border-color:var(--red-2-hover);
 }
 
-.registration__buttons__button:active {
+a + button:active {
     border: 5px solid var(--red-4-border-active);
     background: var(--red-2-hover);
 }
@@ -243,7 +242,7 @@
     color:var(--gray-font);
 }
 
-.registration--divcheck {
+p + div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -258,12 +257,12 @@
     color: var(--gray-2-font);
 }
 
-.registration__divcheck--input {
+p + div > input {
     width: 24px;
     height: 24px;
 }
 
-.registration__divcheck--privacy {
+span + a {
     text-decoration: underline !important;
     color: var(--gray-2-font);
 }
@@ -274,14 +273,14 @@
     padding-top: 320px;
 }
 
-.registration__headings__succes {
+.registration__headings--succes {
     display: flex;
     justify-content: center;
     padding-bottom: 48px;
     width: auto;
 }
 
-.registration--succesh3 {
+h3 {
     font-family: 'Roboto';
     font-weight: var(--font-weight-400);
     font-size: var(--font-size-18);
@@ -291,18 +290,18 @@
     color: var(--gray-2-font);
 }
 
-.registration--succesh3--span {
+h3 > span {
     font-weight: var(--font-weight-700);
 }
 
-.registration--succes-div-button {
+h3 + div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 80%;
 }
 
-.registration--succes-div-button--button {
+h3 + div > button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -320,12 +319,12 @@
     border: 5px solid var(--red-1-normal);
 }
 
-.registration--succes-div-button--button:hover {
+h3 + div > button:hover {
     background: var(--red-2-hover);
     border-color: var(--red-2-hover);
 }
 
-.registration--succes-div-button--button:active {
+h3 + div > button:active {
     border: 5px solid var(--red-4-border-active);
 }
 
@@ -337,30 +336,30 @@
 /**** MEDIA QUERIES ****/
 
 @media (max-width:1312px) {
-    .registration {
+    section {
         width:75%;
     }
 
-    .registration__headings__heading {
+    h1{
         padding-left: 95px;
     }
     
-    .registration__form {
+    form {
         width: 80%;
     }
     
-    .registration__buttons__button {
+    a + button {
         width: 50%;
     }
     
     /***third step of registration***/
    
    
-    .registration__headings__succes {
+    .registration__headings--succes {
         padding-left: 0px;
     }
     
-    .registration--succes-div-button--button {
+    h3 + div > button {
         width: 35%;
     }
 
@@ -368,21 +367,21 @@
 
 @media (max-width:1200px) {
     
-    .registration__headings__heading {
+    h1{
         padding-left: 60px;
     }
     
-    .registration__form {
+    form {
         width: 80%;
     }
-    .registration__buttons__button {
+    a + button {
         width: 47%;
         padding: 14px 40px;
     }
 
     /***third step of registration***/
     
-    .registration--succes-div-button--button {
+    h3 + div > button {
         width: 36%;
     }
 
@@ -390,134 +389,135 @@
 
 @media (max-width:992px) {
 
-    .header {
+    .main-header {
         justify-content: center;
         padding: 24px 0px 70px 0px;
     }
 
-    .header__love {
+    img + img {
         display: none;
     }
 
-    .registration {
+    section {
         width: var(--width-100);
         padding: 24px 24px 22px 24px;
     }
 
-    .registration__headings__heading {
+    h1{
         font-size: 3.75rem;
         line-height: 3.813rem;
         text-align: center;
         padding-left: 0px;
     }
 
-    .registration__headings__heading + .registration__headings__heading {
+    h1+ h1{
         padding-bottom: 48px;
     }
 
-    .registration__form {
+    form {
         width: 74%;
         box-shadow: none;
         padding-top: 0px;
     }
     
-    .registration__buttons__button {
+    a + button {
         width: 47%;
         padding: 14px 40px;
     }
     
     /***third step of registration***/
-    .registration__headings__succes {
+    .registration__headings--succes {
         padding-top: 80px;
         padding-bottom: 48px;
     }
 
-    .registration--succesh3 {
+    h3 {
         padding-bottom: 48px;
     }
 
-    .registration--succes-div-button--button {
+    h3 + div > button {
         width: 38%;
     }
 }
 
 @media (max-width:768px) {
 
-    .registration__headings__heading {
+    h1{
         font-size: 3.313rem;
         line-height: 3.375rem;
     }
 
-    .registration__form {
+    form {
         width: 80%;
         padding: 0px;
     }
+
     .registration__buttons {
         flex-direction: column-reverse;
         align-items: center;
     }
 
-    .registration__buttons__login {
+    div > a {
         padding-top: 35px;
     }
 
-    .registration__buttons__button {
+    a + button {
         width: 65%;
     }
 
     /***second step of registration***/
 
-    .registration__divcheck--privacy {
+    span + a {
         padding: 0px;
     }
     
     /***third step of registration***/
-    .registration__headings__succes {
+    .registration__headings--succes {
         padding-top: 69px;
     }
 
-    .registration--succesh3 {
+    h3 {
         width: 65%;
     }
 
-    .registration--succes-div-button--button {
+    h3 + div > button {
         width: 70%;
     }
 }
 
 @media (max-width:480px) {
 
-    .header {
+    .main-header {
         padding-bottom:64px;
     }
 
-    .registration__headings__heading {
+    h1{
         font-size: 2.5rem;
         line-height: 2.563rem;
     }
 
-    .registration__form {
+    form {
         width: var(--width-100);
     }
 
-    .registration__buttons__button {
+    a + button {
         width: var(--width-100);
     }
     
     /***third step of registration***/
-    .registration__headings__succes {
+    .registration__headings--succes {
         padding-top: 51px;
     }
 
-    .registration--succesh3 {
+    h3 {
         width: var(--width-100);
     }
 
-    .registration--succes-div-button {
+    h3 + div {
         width: var(--width-100);
     }
 
-    .registration--succes-div-button--button {
+    h3 + div > button {
         width: var(--width-100);
         padding: 14px 0px;
     }
